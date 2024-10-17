@@ -4,7 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start-frontend": "cd frontend && npm start",
+    "start-chain": "npx hardhat node",
+    "deploy-contract": "npx hardhat run scripts/deploy.js --network localhost",
+    "dev": "concurrently \"npm run start-chain\" \"npm run deploy-contract\" \"npm run start-frontend\""
   },
   "keywords": [],
   "author": "",
@@ -14,6 +18,7 @@
     "hardhat": "^2.22.13"
   },
   "dependencies": {
-    "@openzeppelin/contracts": "^5.0.2"
+    "@openzeppelin/contracts": "^5.0.2",
+    "concurrently": "^9.0.1"
   }
 }
