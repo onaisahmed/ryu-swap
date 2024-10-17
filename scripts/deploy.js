@@ -1,6 +1,8 @@
 const hre = require("hardhat");
+const fs = require("fs");
 
 async function main() {
+  await resetNetwork();
   const [deployer] = await hre.ethers.getSigners();
 
   console.log("Deploying contracts with the account:", deployer.address);
@@ -23,6 +25,50 @@ async function main() {
   console.log("Kaizen deployed to:", kaizenTokenAddress);
   console.log("Hikari deployed to:", hikariTokenAddress);
   console.log("DEX deployed to:", dexAddress);
+
+  const kaizenABI = JSON.parse(
+    fs.readFileSync("./artifacts/contracts/Kaizen.sol/Kaizen.json", "utf8")
+  ).abi;
+  const hikariABI = JSON.parse(
+    fs.readFileSync("./artifacts/contracts/Hikari.sol/Hikari.json", "utf8")
+  ).abi;
+  const dexABI = JSON.parse(
+    fs.readFileSync(
+      "./artifacts/contracts/decentralized-exchange.sol/DEX.json",
+      "utf8"
+    )
+  ).abi;
+
+  // Create contractData.json
+  const contractData = {
+    kaizenToken: {
+      address: kaizenTokenAddress,
+      abi: kaizenABI,
+    },
+    hikariToken: {
+      address: hikariTokenAddress,
+      abi: hikariABI,
+    },
+    dex: {
+      address: dexAddress,
+      abi: dexABI,
+    },
+  };
+
+  // Write contractData to file
+  fs.writeFileSync(
+    "./frontend/src/contractData.json",
+    JSON.stringify(contractData, null, 2)
+  );
+
+  console.log("Contract data written to ./frontend/src/contractData.json");
+}
+
+async function resetNetwork() {
+  await network.provider.request({
+    method: "hardhat_reset",
+    params: [],
+  });
 }
 
 main()
