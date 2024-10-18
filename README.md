@@ -15,6 +15,10 @@ The project follows a structured layout for better organization:
     - `deploy.js` _(Deploys the DEX and test token contracts)_
   - **test/** _(Contains the test cases for the contracts)_
     - `dex.test.js` _(Unit tests for the DEX contract)_
+  - **frontend/** _(Contains the React frontend application)_
+    - `src/` _(Source files for the React app)_
+    - `public/` _(Public assets for the React app)_
+    - `package.json` _(Frontend dependencies and scripts)_
   - **hardhat.config.js** _(Hardhat configuration file)_
 
 ## Features
@@ -71,6 +75,15 @@ The project follows a structured layout for better organization:
    ```
 
    The contract addresses will be printed in the console after deployment.
+
+### Starting the Front-End
+
+You can start the React front-end Server with the following command:
+
+```bash
+  cd frontend/
+  npm start
+```
 
 ### Interacting with the DEX
 
