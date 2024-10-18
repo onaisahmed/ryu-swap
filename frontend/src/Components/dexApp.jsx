@@ -147,7 +147,7 @@ const DexApp = () => {
     <div className=" bg-custom-color max-w-xl mx-auto p-4 font-sans flex items-center justify-center min-h-screen">
       <div className="bg-contentBox rounded-lg shadow-md overflow-hidden">
         <div className="bg-header-color text-custom-color p-5">
-          <h2 className="text-2xl font-bold">Decentralized Exchange</h2>
+          <h2 className="text-2xl font-bold">RyuSwap</h2>
         </div>
         <div className="p-5">
           <div className="mb-5 text-white">
