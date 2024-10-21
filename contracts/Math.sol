@@ -18,4 +18,24 @@ library Math {
     function min(uint256 a, uint256 b) internal pure returns (uint256) {
         return a < b ? a : b;
     }
+
+    function divDown(uint256 a, uint256 b) internal pure returns (uint256) {
+        require(b != 0, "Math: division by zero");
+        return a / b;
+    }
+
+    function mulDown(uint256 a, uint256 b) internal pure returns (uint256) {
+        require(b == 0 || a <= type(uint256).max / b, "Math: overflow");
+        return a * b;
+    }
+
+    function divUp(uint256 a, uint256 b) internal pure returns (uint256) {
+        require(b != 0, "Math: division by zero");
+        return (a + b - 1) / b;
+    }
+
+    function mulUp(uint256 a, uint256 b) internal pure returns (uint256) {
+        require(b == 0 || a <= type(uint256).max / b, "Math: overflow");
+        return (a * b + b - 1) / b;
+    }
 }
